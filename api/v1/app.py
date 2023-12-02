@@ -13,6 +13,7 @@ app.config['JSONIFY_PRETTYPRINT_REGULAR'] = True
 app.register_blueprint(app_views)
 app.config["DEBUG"] = True
 
+
 @app.teardown_appcontext
 def close_db(obj):
     """ calls methods close() """
