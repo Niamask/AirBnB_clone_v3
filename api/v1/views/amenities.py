@@ -38,7 +38,7 @@ def del_method_amenity(amenity_id):
         abort(404)
     amenity.delete()
     storage.save()
-    return make_response(jsonify({}), 200)
+    return jsonify({})
 
 
 @app_views.route('/amenities', methods=['POST'],
@@ -70,4 +70,4 @@ def post_method_amenity(amenity_id):
         if key not in ['id', 'created_at', 'updated_at']:
             setattr(obj, key, value)
     storage.save()
-    return make_response(jsonify(obj.to_dict()), 200)
+    return jsonify(obj.to_dict())
