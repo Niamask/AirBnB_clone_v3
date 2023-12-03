@@ -13,10 +13,9 @@ from models.user import User
 from flask import Flask
 from flask import jsonify
 from api.v1.views import app_views
-from sqlalchemy.sql import text
 
 
-@app_views.route('/status', strict_slashes=False)
+@app_views.route('/status', methods=['GET'], strict_slashes=False)
 def status():
     """
     Returns a JSON status
@@ -24,7 +23,7 @@ def status():
     return jsonify({"status": "OK"})
 
 
-@app_views.route('/stats', strict_slashes=False)
+@app_views.route('/stats', methods=['GET'], strict_slashes=False)
 def count():
     """
     Retrieves the number of each objects by type
