@@ -15,7 +15,7 @@ app.config["DEBUG"] = True
 
 
 @app.teardown_appcontext
-def close_db(obj):
+def close_db(exception):
     """ calls methods close() """
     storage.close()
 
@@ -25,4 +25,4 @@ if __name__ == "__main__":
     host = getenv('HBNB_API_HOST', default='0.0.0.0')
     port = getenv('HBNB_API_PORT', default=5000)
 
-    app.run(host, int(port), threaded=True)
+    app.run(host=host, port=int(port), threaded=True)

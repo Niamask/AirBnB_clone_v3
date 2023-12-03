@@ -15,7 +15,7 @@ from flask import jsonify
 from api.v1.views import app_views
 
 
-@app_views.route('/status', methods=['GET'], strict_slashes=False)
+@app_views.route('/status', methods=['GET'])
 def status():
     """
     Returns a JSON status
@@ -23,8 +23,8 @@ def status():
     return jsonify({"status": "OK"})
 
 
-@app_views.route('/stats', methods=['GET'], strict_slashes=False)
-def count():
+@app_views.route('/stats', methods=['GET'])
+def count_objs():
     """
     Retrieves the number of each objects by type
     """
