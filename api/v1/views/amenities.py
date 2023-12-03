@@ -38,7 +38,7 @@ def del_method_amenity(amenity_id):
         abort(404)
     amenity.delete()
     storage.save()
-    return jsonify({}), 200
+    return make_response(jsonify({}), 200)
 
 
 @app_views.route('/amenities', methods=['POST'],
@@ -53,7 +53,7 @@ def create_amenity():
     js = request.get_json()
     obj = Amenity(**js)
     obj.save()
-    return jsonify(obj.to_dict()), 201
+    return make_response(jsonify(obj.to_dict()), 201)
 
 
 @app_views.route('/amenities/<amenity_id>', methods=['PUT'],
@@ -61,13 +61,13 @@ def create_amenity():
 @swag_from('documentation/amenity/put.yml', methods=['PUT'])
 def post_method_amenity(amenity_id):
     """ post method """
+    if not request.get_json():
+        return make_response(jsonify({"error": "Not a JSON"}), 400)
     obj = storage.get(Amenity, amenity_id)
     if obj is None:
         abort(404)
-    if not request.get_json():
-        return make_response(jsonify({"error": "Not a JSON"}), 400)
     for key, value in request.get_json().items():
-        if key not in ['id', 'created_at', 'updated']:
+        if key not in ['id', 'created_at', 'updated_at']:
             setattr(obj, key, value)
     storage.save()
-    return jsonify(obj.to_dict()), 200
+    return make_response(jsonify(obj.to_dict()), 200)
