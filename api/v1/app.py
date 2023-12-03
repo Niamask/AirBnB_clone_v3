@@ -19,6 +19,11 @@ def close_db(exception):
     """ calls methods close() """
     storage.close()
 
+@app.errorhandler(404)
+def page_not_foun(error):
+    """ Loads a custom 404 page not found """
+    return make_response(jsonify({"error": "Not found"}), 404)
+
 
 if __name__ == "__main__":
 
