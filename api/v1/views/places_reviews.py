@@ -84,5 +84,5 @@ def post_review(review_id):
     for ke, value in request.get_json().items():
         if ke not in ['id', 'user_id', 'place_id', 'created_at', 'updated_at']:
             setattr(obj, ke, value)
-    storage.save()
+    obj.save()
     return jsonify(obj.to_dict())
