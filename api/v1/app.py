@@ -7,6 +7,7 @@ from models import storage
 from api.v1.views import app_views
 from flask import Flask, make_response, jsonify
 from os import getenv
+from flasgger import Swagger
 
 app = Flask(__name__)
 app.config['JSONIFY_PRETTYPRINT_REGULAR'] = True
