@@ -53,7 +53,7 @@ def create_amenity():
     js = request.get_json()
     obj = Amenity(**js)
     obj.save()
-    return make_response(jsonify(obj.to_dict()), 201)
+    return (jsonify(obj.to_dict()), 201)
 
 
 @app_views.route('/amenities/<amenity_id>', methods=['PUT'],
