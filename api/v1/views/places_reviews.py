@@ -61,7 +61,7 @@ def create_obj_review(place_id):
     user = storage.get(User, kwargs['user_id'])
     if user is None:
         abort(404)
-    obj = Review(**kwargs)
+    obj = Review(place_id=place_id, **kwargs)
     obj.save()
     return (jsonify(obj.to_dict()), 201)
 
