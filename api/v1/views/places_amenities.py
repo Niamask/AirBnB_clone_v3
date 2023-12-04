@@ -26,7 +26,7 @@ def get_amens_of_place(place_id):
         list_as = [obj.to_dict() for obj in place.amenities]
     else:
         list_as = place.amenity_ids
-    return jsonify(list_s)
+    return jsonify(list_as)
 
 
 @app_views.route('/places/<place_id>/amenities/<amenity_id>',
@@ -45,7 +45,7 @@ def delete_amens_of_place(place_id, amenity_id):
         else:
             place.amenities.remove(amenity)
     else:
-        if amenity not in place.amenity_ids:
+        if amenity_id not in place.amenity_ids:
             abort(404)
         else:
             place.amenity_ids.remove(amenity_id)
@@ -67,7 +67,7 @@ def post_ameni_of_place(place_id, amenity_id):
         if amenity in place.amenities:
             return (jsonify(amenity.to_dict()), 200)
         else:
-            place.amenitites.append(amenity)
+            place.amenities.append(amenity)
     else:
         if amenity_id in place.amenity_ids:
             return (jsonify(amenity.to_dict()), 200)
