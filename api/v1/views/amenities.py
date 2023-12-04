@@ -42,7 +42,7 @@ def del_amenity(amenity_id):
     return jsonify({})
 
 
-@app_views.route('/amenities/', methods=['POST'],
+@app_views.route('/amenities', methods=['POST'],
                  strict_slashes=False)
 @swag_from('documentation/amenity/post.yml', methods=['POST'])
 def create_obj_amenity():
