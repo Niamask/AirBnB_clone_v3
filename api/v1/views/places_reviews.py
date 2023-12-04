@@ -70,11 +70,11 @@ def create_obj_review(place_id):
                  strict_slashes=False)
 def post_review(review_id):
     """ update review  """
-    if not request.get_json():
-        return abort(400, "Not a JSON")
     obj = storage.get(Review, review_id)
     if obj is None:
         abort(404)
+    if not request.get_json():
+        return abort(400, "Not a JSON")
     for ke, value in request.get_json().items():
         if ke not in ['id', 'user_id', 'place_id', 'created_at', 'updated_at']:
             setattr(obj, ke, value)
